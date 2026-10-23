@@ -7,6 +7,10 @@
 #define FG_COLOR        0x32FF32FF
 
 int main(void){
+#ifdef __APPLE__
+    SetConfigFlags(FLAG_WINDOW_HIGHDPI);
+#endif
+    SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello!");
     SetTargetFPS(FPS);
     Vector2 player_origin = {
