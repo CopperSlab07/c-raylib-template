@@ -6,8 +6,10 @@
 #define BG_COLOR        0x323232FF
 #define FG_COLOR        0x32FF32FF
 
+#define USE_HIGHDPI
+
 int main(void){
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(USE_HIGHDPI)
     SetConfigFlags(FLAG_WINDOW_HIGHDPI);
 #endif
     SetConfigFlags(FLAG_VSYNC_HINT);
