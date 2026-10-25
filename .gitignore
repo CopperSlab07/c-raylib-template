@@ -1,7 +1,4 @@
 zig-out/*
 zig-pkg/*
 .zig-cache/*
-autogen/*.a
-autogen/*.dll
-autogen/*.so
-assets/*
+autogen/*
