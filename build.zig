@@ -10,7 +10,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .link_libc = true
     });
-    mod.addIncludePath(b.path("./vendor/raylib/src"));
+    mod.addIncludePath(b.path("./autogen/raylib/include/"));
     mod.addIncludePath(b.path("./utils/"));
 
     const c_source_files = [_][]const u8{
@@ -30,54 +30,8 @@ pub fn build(b: *std.Build) void {
         .flags = &c_flags
     });
     
-    //TODO: build raylib (static) with zig, then output it to autogen/
-    //const default_raylib_build_options = [_][]const u8{
-        //"cd",
-        //"vendor/raylib/src",
-        //"&&",
-        //"make",
-        //"PLATFORM=PLATFORM_DESKTOP_RGFW",
-        //"&&",
-        //"cd",
-        //"../../../"
-    //};
-//
-    //var not_exist: bool = false;
-    //var raylib_dir: std.Io.Dir = undefined;
-    //var raylib_lib: std.Io.File = undefined;
-//
-    //var check_autogen = std.Io.Dir.openDir(std.Io.Dir.cwd(), std.Io.failing, "autogen", .{});
-    //if(check_autogen) |value| {
-        //raylib_dir = value;
-    //} else |err| {
-        //if(err == error.FileNotFound){
-            //const permissions = std.Io.File.Permissions.default_dir;
-            //std.Io.Dir.createDir(std.Io.Dir.cwd(), std.Io.failing, "autogen", permissions)
-                //catch |create_err| switch(create_err){
-                    //else => std.debug.print("Cannot create autogen!\n", .{})
-                //};
-            //check_autogen = std.Io.Dir.openDir(std.Io.Dir.cwd(), std.Io.failing, "autogen", .{});
-        //}
-    //}
-//
-    //not_exist = false;
-//
-    //var check_raylib = std.Io.Dir.openFile(raylib_dir, std.Io.failing, "libraylib.a", .{});
-    //if(check_raylib) |value| {
-        //raylib_lib = value;
-    //} else |err| {
-        //if(err == error.FileNotFound){
-        //_ = b.addSystemCommand(&default_raylib_build_options);
-            //if(std.Io.Dir.rename(std.Io.Dir.cwd(), "vendor\\raylib\\src\\libraylib.a", std.Io.Dir.cwd(), "autogen\\libraylib.a", std.Io.failing)){} else |_| {}
-            //check_raylib = std.Io.Dir.openFile(raylib_dir, std.Io.failing, "libraylib.a", .{});
-        //}
-    //}
-
-    //std.Io.File.close(raylib_lib, std.Io.failing);
-    //std.Io.Dir.close(raylib_dir, std.Io.failing);
-
     //In case you have a pre-compiled raylib.
-    mod.addLibraryPath(b.path("./autogen"));
+    mod.addLibraryPath(b.path("./autogen/raylib/lib"));
     mod.linkSystemLibrary("raylib", .{});
     
     mod.linkSystemLibrary("m", .{});
