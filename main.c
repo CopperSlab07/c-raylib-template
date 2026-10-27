@@ -1,12 +1,12 @@
+#include <ctype.h>
 #include <raylib.h>
+#include <copper-utils/copper_da.h>
 
 #define WINDOW_WIDTH    800
 #define WINDOW_HEIGHT   450
 #define FPS             60
 #define BG_COLOR        0x323232FF
 #define FG_COLOR        0x32FF32FF
-
-#define USE_HIGHDPI
 
 int main(void){
 #if defined(__APPLE__) || defined(USE_HIGHDPI)
@@ -15,6 +15,7 @@ int main(void){
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello!");
     SetTargetFPS(FPS);
+
     Vector2 player_origin = {
         .x = 50,
         .y = 50
@@ -26,6 +27,7 @@ int main(void){
         .height = player_origin.y * 2,
     };
     float rotation = 0;
+
     while(!WindowShouldClose()){
         rotation += GetFrameTime() * 100;
         if(rotation > 360) rotation -= 360;

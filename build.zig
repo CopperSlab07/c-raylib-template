@@ -11,7 +11,7 @@ pub fn build(b: *std.Build) void {
         .link_libc = true
     });
     mod.addIncludePath(b.path("./autogen/raylib/include/"));
-    mod.addIncludePath(b.path("./utils/"));
+    mod.addIncludePath(b.path("./vendor/"));
 
     const c_source_files = [_][]const u8{
         "main.c",
@@ -45,6 +45,7 @@ pub fn build(b: *std.Build) void {
             mod.linkFramework("Cocoa", .{});
             mod.linkFramework("OpenGL", .{});
             mod.linkFramework("IOKit", .{});
+            mod.linkFramework("QuartzCore", .{});
         },
         .linux => {
             mod.linkSystemLibrary("X11", .{});

@@ -4,3 +4,6 @@
 [submodule "vendor/microui"]
 	path = vendor/microui
 	url = https://github.com/rxi/microui.git
+[submodule "vendor/copper-utils"]
+	path = vendor/copper-utils
+	url = git@github.com:CopperSlab07/copper-utils
